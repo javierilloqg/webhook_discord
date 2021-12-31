@@ -26,34 +26,34 @@ host = 'imap.gmail.com'
 mail = imaplib.IMAP4_SSL(host, 993)
 mail.login(username, contraseña_aplicacion)
 
-while True:
+try:
+    while True:
 
-    # Select INBOX as main folder to check
-    mail.select('INBOX')
-    # Select only emails marked as unseen from the specified email address
-    _, selected_emails = mail.search(None, '(UNSEEN)', '(FROM "javiquesadagalban@gmail.com")')
-    print("[" + str(datetime.now()) + "] " + "Unseen emails from selected address: ", \
-        len(selected_emails[0].split()))
+        # Select INBOX as main folder to check
+        mail.select('INBOX')
+        # Select only emails marked as unseen from the specified email address
+        _, selected_emails = mail.search(None, '(UNSEEN)', '(FROM "javiquesadagalban@gmail.com")')
+        print("[" + str(datetime.now()) + "] " + "Unseen emails from selected address: ", \
+            len(selected_emails[0].split()))
 
-    for num in selected_emails[0].split():
-        _, data = mail.fetch(num , '(RFC822)')
-        _, bytes_data = data[0]
-        # Byte data to message
-        email_message = email.message_from_bytes(bytes_data)
-        print("\n===========================================")
-        # Access email data
-        print("Subject: ",email_message["subject"])
-        print("From: ",email_message["from"])
-        for part in email_message.walk():
-            if part.get_content_type()=="text/plain" or part.get_content_type()=="text/html":
-                message = part.get_payload(decode=True)
-                print("Message: \n", str(message.decode())[0:100])
-                print("==========================================\n")
-                break
-        hook = Webhook(discord_url)
-        hook.send(str(message.decode())[0:100])
-    time.sleep(0.5)
-
-
-
-""" """
+        for num in selected_emails[0].split():
+            _, data = mail.fetch(num , '(RFC822)')
+            _, bytes_data = data[0]
+            # Byte data to message
+            email_message = email.message_from_bytes(bytes_data)
+            print("\n===========================================")
+            # Access email data
+            print("Subject: ",email_message["subject"])
+            print("From: ",email_message["from"])
+            for part in email_message.walk():
+                if part.get_content_type()=="text/plain" or part.get_content_type()=="text/html":
+                    message = part.get_payload(decode=True)
+                    print("Message: \n", str(message.decode())[0:100])
+                    print("==========================================\n")
+                    break
+            hook = Webhook(discord_url)
+            hook.send(str(message.decode())[0:100])
+        time.sleep(0.5)
+except KeyboardInterrupt:
+    mail.logout()
+    print("Script stopped and logged out")
