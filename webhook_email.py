@@ -19,15 +19,15 @@ from dhooks import Webhook
 from datetime import datetime
 
 #### CHANGE THIS LINES ACCORDING TO YOUR APP PASSWORD AND EMAIL #### 
-username = 'javiquesadagalban@gmail.com'
-contraseña_aplicacion = 'fgxs ypcp yyjf jrmn'
-scraped_email = 'javiquesadagalban@gmail.com'
-discord_url = 'https://discord.com/api/webhooks/926152804765151252/L85Z-xUzBy-sbet6uJRzc3pYZ_n8TM2pKQ8z6Nobsn006zzBfZgReklaiemF3OKgtczZ'
+username = 'jimcramernewsletterrocks@gmail.com'
+app_password = 'aedc kwdj vjgt utfj'
+scraped_email = 'cnbc@response.cnbc.com'
+discord_url = 'https://discord.com/api/webhooks/926566716132163666/fufkyRs4kapN7IGiBXuMqvRovZEzlKEAGncds4et1lNpVJOuxDs4rKaxkC3zVkCiBtd_'
 ###################################################################
 
 host = 'imap.gmail.com'
 mail = imaplib.IMAP4_SSL(host, 993)
-mail.login(username, contraseña_aplicacion)
+mail.login(username, app_password)
 
 try:
     while True:
@@ -57,6 +57,7 @@ try:
             hook = Webhook(discord_url)
             hook.send("**" + str(message.decode())[0:100] + "**")
         time.sleep(0.5)
+        
 except KeyboardInterrupt:
     mail.logout()
     print("Script stopped and logged out")
