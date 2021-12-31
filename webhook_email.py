@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 In this code I will use Discord's webhooks to send data received into a Gmail account.
 For this to run, the script must be running constantly and generate an alternative password
