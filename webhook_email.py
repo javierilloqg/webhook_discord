@@ -19,6 +19,7 @@ from datetime import datetime
 #### CHANGE THIS LINES ACCORDING TO YOUR APP PASSWORD AND EMAIL #### 
 username = 'javiquesadagalban@gmail.com'
 contraseña_aplicacion = 'fgxs ypcp yyjf jrmn'
+scraped_email = 'javiquesadagalban@gmail.com'
 discord_url = 'https://discord.com/api/webhooks/926152804765151252/L85Z-xUzBy-sbet6uJRzc3pYZ_n8TM2pKQ8z6Nobsn006zzBfZgReklaiemF3OKgtczZ'
 ###################################################################
 
@@ -32,7 +33,7 @@ try:
         # Select INBOX as main folder to check
         mail.select('INBOX')
         # Select only emails marked as unseen from the specified email address
-        _, selected_emails = mail.search(None, '(UNSEEN)', '(FROM "javiquesadagalban@gmail.com")')
+        _, selected_emails = mail.search(None, '(UNSEEN)', f'(FROM "{scraped_email}")')
         print("[" + str(datetime.now()) + "] " + "Unseen emails from selected address: ", \
             len(selected_emails[0].split()))
 
