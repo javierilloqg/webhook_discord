@@ -52,7 +52,7 @@ try:
                     print("==========================================\n")
                     break
             hook = Webhook(discord_url)
-            hook.send(str(message.decode())[0:100])
+            hook.send("**" + str(message.decode())[0:100] + "**")
         time.sleep(0.5)
 except KeyboardInterrupt:
     mail.logout()
