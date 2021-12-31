@@ -1,0 +1,2 @@
+# webhook_discord
+In this code I will use Discord's webhooks to send data received into a Gmail account. For this to run, the script must be running constantly and generate an alternative password for the Gmail account to be scraped. You MUST change the information stored in the variables marked with grenn # in order to succesfully connect to your Gmail account and get the email  data.   - Part of the code based in the following tutorial:  https://www.techgeekbuzz.com/how-to-read-emails-in-python/
