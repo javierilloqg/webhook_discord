@@ -15,14 +15,15 @@ https://www.techgeekbuzz.com/how-to-read-emails-in-python/
 import email
 import imaplib
 import time
+import re
 from dhooks import Webhook
 from datetime import datetime
 
 #### CHANGE THIS LINES ACCORDING TO YOUR APP PASSWORD AND EMAIL #### 
-username = 'jimcramernewsletterrocks@gmail.com'
-app_password = 'aedc kwdj vjgt utfj'
-scraped_email = 'cnbc@response.cnbc.com'
-discord_url = 'https://discord.com/api/webhooks/926566716132163666/fufkyRs4kapN7IGiBXuMqvRovZEzlKEAGncds4et1lNpVJOuxDs4rKaxkC3zVkCiBtd_'
+username = 'javiquesadagalban@gmail.com'
+app_password = 'fgxs ypcp yyjf jrmn'
+scraped_email = 'javiquesadagalban@gmail.com'
+discord_url = 'https://discord.com/api/webhooks/926152804765151252/L85Z-xUzBy-sbet6uJRzc3pYZ_n8TM2pKQ8z6Nobsn006zzBfZgReklaiemF3OKgtczZ'
 ###################################################################
 
 host = 'imap.gmail.com'
@@ -49,13 +50,16 @@ try:
             print("Subject: ",email_message["subject"])
             print("From: ",email_message["from"])
             for part in email_message.walk():
-                if part.get_content_type()=="text/plain" or part.get_content_type()=="text/html":
+                if part.get_content_type()=="text/plain":
                     message = part.get_payload(decode=True)
-                    print("Message: \n", str(message.decode())[0:100])
+                    #print("Message: \n", str(message.decode())[0:-700])
+                    mensaje = re.sub(r"http\S+", "", str(message.decode())[737:]).strip()
+                    print((mensaje.replace('<','')[:-4136].strip()))
                     print("==========================================\n")
                     break
             hook = Webhook(discord_url)
-            hook.send("**" + str(message.decode())[0:100] + "**")
+            mensaje_hook = str(mensaje.replace('<','')[:-4136]).strip()
+            hook.send("**" + mensaje_hook.replace('\n', '') + "**")
         time.sleep(0.5)
         
 except KeyboardInterrupt:
