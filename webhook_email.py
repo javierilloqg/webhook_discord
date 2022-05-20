@@ -5,9 +5,9 @@ In this code I will use Discord's webhooks to send data received into a Gmail ac
 For this to run, the script must be running constantly and generate an alternative password
 for the Gmail account to be scraped. You MUST change the information stored in the variables
 marked with grenn # in order to succesfully connect to your Gmail account and get the email 
-data. 
+data.
 
-- Part of the code based in the following tutorial: 
+- Part of the code based in the following tutorial:
 https://www.techgeekbuzz.com/how-to-read-emails-in-python/
 
 """
@@ -19,11 +19,11 @@ import re
 from dhooks import Webhook
 from datetime import datetime
 
-#### CHANGE THIS LINES ACCORDING TO YOUR APP PASSWORD AND EMAIL #### 
-username = 'javiquesadagalban@gmail.com'
-app_password = 'fgxs ypcp yyjf jrmn'
-scraped_email = 'javiquesadagalban@gmail.com'
-discord_url = 'https://discord.com/api/webhooks/926152804765151252/L85Z-xUzBy-sbet6uJRzc3pYZ_n8TM2pKQ8z6Nobsn006zzBfZgReklaiemF3OKgtczZ'
+#### CHANGE THIS LINES ACCORDING TO YOUR APP PASSWORD AND EMAIL ####
+username = ''
+app_password = ''
+scraped_email = ''
+discord_url = ''
 ###################################################################
 
 host = 'imap.gmail.com'
@@ -61,7 +61,7 @@ try:
             mensaje_hook = str(mensaje.replace('<','')[:-4136]).strip()
             hook.send("**" + mensaje_hook.replace('\n', '') + "**")
         time.sleep(0.5)
-        
+
 except KeyboardInterrupt:
     mail.logout()
     print("Script stopped and logged out")
